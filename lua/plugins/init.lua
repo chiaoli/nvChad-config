@@ -123,6 +123,49 @@ return {
     end,
   },
 
+  -- UFO folding dependencies
+  {
+    "kevinhwang91/promise-async",
+    lazy = true,
+  },
+
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = { "kevinhwang91/promise-async" },
+    event = "BufRead",
+    config = function()
+      -- Configure fold options
+      vim.o.foldcolumn = '1' -- '0' is not bad
+      vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+
+      -- Using ufo provider need remap `zR` and `zM`
+      vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+      vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+      vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)
+      vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith)
+
+      -- Option 1: coc.nvim as LSP client
+      -- use('neoclide/coc.nvim', {branch = 'release'})
+      -- require('ufo').setup()
+      --
+      -- Option 2: nvim lsp as LSP client
+      -- Use treesitter as main provider to avoid LSP conflicts
+      require('ufo').setup({
+          provider_selector = function(bufnr, filetype, buftype)
+              return {'treesitter', 'indent'}
+          end
+      })
+    end,
+    keys = {
+      { "zR", desc = "Open all folds" },
+      { "zM", desc = "Close all folds" },
+      { "zr", desc = "Open folds except kinds" },
+      { "zm", desc = "Close folds with" },
+    },
+  },
+
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
