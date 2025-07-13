@@ -95,6 +95,34 @@ return {
     end,
   },
 
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+        surrounds = {
+          -- Add custom surrounds here
+          ["("] = {
+            add = { "(", ")" },
+            find = function()
+              return require("nvim-surround.config").get_selection({ motion = "a(" })
+            end,
+            delete = "^(.)().-(.)()$",
+          },
+          [")"] = {
+            add = { "( ", " )" },
+            find = function()
+              return require("nvim-surround.config").get_selection({ motion = "a)" })
+            end,
+            delete = "^(. ?)().-(.? ?)()$",
+          },
+        },
+      })
+    end,
+  },
+
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
