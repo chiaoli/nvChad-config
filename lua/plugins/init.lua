@@ -396,6 +396,45 @@ return {
     end,
   },
 
+  {
+    "coder/claudecode.nvim",
+    opts = {
+      -- 伺服器配置
+      port_range = { min = 10000, max = 65535 },
+      auto_start = true,
+      log_level = "info",
+      
+      -- 選擇追蹤
+      track_selection = true,
+      visual_demotion_delay_ms = 50,
+      
+      -- 終端機配置 - 使用原生終端機
+      terminal = {
+        split_side = "right",
+        split_width_percentage = 0.30,
+        provider = "native", -- 使用原生終端機
+        auto_close = true
+      },
+      
+      -- Diff 整合
+      diff_opts = {
+        auto_close_on_accept = true,
+        vertical_split = true,
+        open_in_current_tab = true
+      }
+    },
+    keys = {
+      -- 避免與現有快捷鍵衝突，使用 <leader>c 前綴
+      { "<leader>cc", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+      { "<leader>cf", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+      { "<leader>cr", "<cmd>ClaudeCode --continue<cr>", desc = "Resume Claude" },
+      { "<leader>cb", "<cmd>ClaudeCodeAdd<cr>", desc = "Add current buffer" },
+      { "<leader>cs", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
+      { "<leader>ca", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+      { "<leader>cd", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+    }
+  },
+
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
