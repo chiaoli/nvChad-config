@@ -11,4 +11,8 @@ map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
 map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "Theme switcher" })
 
+-- Visual mode line movement
+map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })
+map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
+
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
