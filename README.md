@@ -1,0 +1,1 @@
+# nvChad-config
