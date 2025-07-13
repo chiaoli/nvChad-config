@@ -208,6 +208,23 @@ return {
     end,
   },
 
+  {
+    "gbprod/cutlass.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("cutlass").setup({
+        cut_key = "m",
+        override_del = true,  -- Override the default 'd' behavior
+        exclude = {},         -- Exclude certain filetypes
+        registers = {
+          select = "_",       -- Use blackhole register for deletes
+          delete = "_",       -- Use blackhole register for deletes
+          change = "_",       -- Use blackhole register for changes
+        }
+      })
+    end,
+  },
+
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
