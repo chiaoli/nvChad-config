@@ -9,5 +9,6 @@ map("i", "jk", "<ESC>")
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
 map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
+map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "Theme switcher" })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
